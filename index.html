@@ -614,37 +614,40 @@
       /* Small devices (≤768px) */
       @media (max-width: 767.98px) {
         .highlight-carousel {
-          flex-wrap: nowrap;
-          overflow-x: auto;
-          /* ✅ allow swipe/scroll */
-          scroll-snap-type: x mandatory;
-          justify-content: flex-start;
+          justify-content: center;
           gap: 20px;
-          padding: 10px;
         }
 
         .highlight-card {
-          scroll-snap-align: center;
-          width: 220px;
-          padding: 15px;
-          flex: 0 0 auto;
+          width: 250px;
+          /* 1 card visible at a time */
+          flex-shrink: 0;
+          opacity: 0.5;
+          transform: scale(0.9);
+          transition: all 0.4s ease;
         }
 
-        .highlight-img {
-          width: 180px;
-          height: 240px;
+        .highlight-card.active {
+          opacity: 1;
+          transform: scale(1.05);
         }
 
         .carousel-btn {
-          display: none;
-          /* hide arrows on mobile */
+          display: flex;
+          /* arrows visible */
         }
       }
+
+
+
+
+
+
 
       /* Extra small devices (≤576px) */
       @media (max-width: 575.98px) {
         .highlight-card {
-          width: 200px;
+          width: 280px;
         }
 
         .highlight-img {
@@ -658,7 +661,6 @@
       document.addEventListener("DOMContentLoaded", () => {
         const track = document.querySelector(".highlight-carousel");
         let cards = Array.from(document.querySelectorAll(".highlight-card"));
-        const imgs = document.querySelectorAll(".highlight-img");
         const prevBtn = document.querySelector(".carousel-btn.prev");
         const nextBtn = document.querySelector(".carousel-btn.next");
 
@@ -679,21 +681,23 @@
           const trackRect = track.getBoundingClientRect();
           const cardRect = card.getBoundingClientRect();
 
-          const offset =
-            track.scrollLeft +
-            card.offsetLeft -
-            trackRect.width / 2 +
-            cardRect.width / 2;
+          let offset;
+
+          if (window.innerWidth < 768) {
+            // mobile: single card
+            offset = card.offsetLeft - (trackRect.width - cardRect.width) / 2;
+          } else {
+            // desktop: multiple cards, center card highlighted
+            offset = track.scrollLeft + card.offsetLeft - trackRect.width / 2 + cardRect.width / 2;
+          }
 
           track.style.transition = jump ? "none" : "transform 0.6s ease-in-out";
           track.style.transform = `translateX(${-offset}px)`;
 
-          // Highlight active card (entire card, not just image)
           cards.forEach((c, i) => {
             c.classList.toggle("active", i === currentIndex);
           });
         }
-
 
         nextBtn.addEventListener("click", () => {
           currentIndex++;
@@ -702,7 +706,7 @@
           // If reached clone of first, jump to real first
           if (currentIndex === cards.length - 1) {
             currentIndex = 1;
-            setTimeout(() => updateCarousel(true), 610); // after animation
+            setTimeout(() => updateCarousel(true), 610);
           }
         });
 
@@ -713,7 +717,7 @@
           // If reached clone of last, jump to real last
           if (currentIndex === 0) {
             currentIndex = total;
-            setTimeout(() => updateCarousel(true), 610); // after animation
+            setTimeout(() => updateCarousel(true), 610);
           }
         });
 
