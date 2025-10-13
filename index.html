@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Innovative Solutions</title>
+  <title>Finovra</title>
   <meta name="description" content="" />
   <meta name="keywords" content="" />
 
@@ -44,7 +44,7 @@
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.webp" alt=""> -->
-        <h1 class="sitename">Innovative Solutions</h1>
+        <h1 class="sitename">Finovra</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -81,7 +81,7 @@
                 <div class="icon-circle me-2">
                   <i class="bi bi-bell"></i>
                 </div>
-                <span class="badge-text me-3">Innovative Solutions</span>
+                <span class="badge-text me-3">Finovra</span>
               </div>
             </div>
             <h1 class="hero-title">
@@ -121,7 +121,7 @@
             <p class="who-we-are">Who We Are</p>
             <h3>Unleashing Potential with Creative Strategy</h3>
             <p class="fst-italic">
-              At Innovative Solutions, we specialize in providing a
+              At Finovra, we specialize in providing a
               comprehensive range of services designed to help businesses
               thrive in a rapidly evolving marketplace. From business setup
               and VAT registration to expert financial advisory and corporate
@@ -166,6 +166,54 @@
 
     <!-- How We Work Section -->
     <!-- /How We Work Section -->
+  <!-- Clients Section -->
+<section id="clients" class="clients section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="clients-slider overflow-hidden position-relative">
+      <div class="clients-track d-flex align-items-center">
+        <!-- Add all your logos here -->
+        <div class="client-item mx-2">
+          <img src="assets/img/about/1.png" alt="Client 1" class="img-fluid">
+        </div>
+        <div class="client-item mx-2">
+          <img src="assets/img/about/4.png" alt="Client 2" class="img-fluid">
+        </div>
+        <div class="client-item mx-2">
+          <img src="assets/img/about/2.png" alt="Client 3" class="img-fluid">
+        </div>
+        <div class="client-item mx-2">
+          <img src="assets/img/about/3.png" alt="Client 4" class="img-fluid">
+        </div>
+        <div class="client-item mx-2">
+          <img src="assets/img/about/5.png" alt="Client 5" class="img-fluid">
+        </div>
+        <div class="client-item mx-2">
+          <img src="assets/img/clients/clients-6.webp" alt="Client 6" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>const track = document.querySelector('.clients-track');
+const trackWidth = track.scrollWidth;
+const clone = track.innerHTML;   // duplicate content
+track.innerHTML += clone;        // append clone for seamless loop
+
+let scrollPos = 0;
+const speed = 1;  // adjust scroll speed (higher = faster)
+
+function scrollClients() {
+  scrollPos += speed;
+  if (scrollPos >= trackWidth) {
+    scrollPos = 0; // loop back
+  }
+  track.style.transform = `translateX(-${scrollPos}px)`;
+  requestAnimationFrame(scrollClients);
+}
+
+scrollClients();
+</script>
+
 
     <!-- Services Section -->
     <section id="services" class="services section">
@@ -395,11 +443,14 @@
       </div>
     </section>
     <!-- /Services Alt Section -->
+
+
+
     <!-- Our Work Section -->
     <section id="our-work" class="section"
       style="background-color: color-mix(in srgb, var(--accent-color), transparent 95%); padding: 60px 0;">
       <div class="container section-title" data-aos="fade-up">
-        <h2>Our Work</h2>
+        <h2>Featured Work</h2>
       </div>
       <div class="container">
         <div class="carousel-wrapper position-relative" data-aos="fade-up">
@@ -480,9 +531,9 @@
       }
 
       .highlight-card p {
-        color: #ff5f6d;
+        color: #4b536c;
         font-size: 0.9rem;
-        font-weight: 500;
+        font-weight: 400;
       }
 
       .highlight-card img {
