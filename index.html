@@ -465,19 +465,7 @@
         /* smoother transitions */
       }
 
-      .highlight-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        background: #fff;
-        border-radius: 20px;
-        padding: 20px 20px 25px;
-        width: 340px;
-        flex-shrink: 0;
-        transition: all 0.4s ease;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-      }
+
 
       .highlight-card .card-content {
         text-align: center;
@@ -512,17 +500,44 @@
         transform: scale(1.05);
       }
 
-      /* ==== IMAGE EFFECT ==== */
+      /* Remove blur from image level */
       .highlight-img {
-        width: 350px;
-        height: auto;
-        object-fit: cover;
+        width: 100%;
+        border-radius: 12px;
+        transition: transform 0.3s ease;
+      }
+
+      /* Base card style (non-active) */
+      .highlight-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background: #fff;
         border-radius: 20px;
-        opacity: 0.4;
-        transform: scale(0.8);
-        transition: all 0.4s ease;
-        filter: blur(1px);
+        padding: 20px 20px 25px;
+        width: 340px;
         flex-shrink: 0;
+        transition: all 0.4s ease;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        opacity: 0.5;
+        /* dimmed by default */
+        filter: blur(1px);
+        transform: scale(0.9);
+      }
+
+      /* Highlighted active card */
+      .highlight-card.active {
+        opacity: 1;
+        filter: none;
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(255, 128, 0, 0.4);
+        z-index: 2;
+      }
+
+      /* Optional hover (only enhance active) */
+      .highlight-card.active:hover img {
+        transform: scale(1.05);
       }
 
       .highlight-img.active {
@@ -538,7 +553,8 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: linear-gradient(45deg, #ff5f6d, #ffc371);
+        background-color:
+          color-mix(in srgb, var(--accent-color), transparent 92%);
         border: none;
         color: white;
         font-size: 1.8rem;
@@ -551,6 +567,7 @@
         justify-content: center;
         transition: 0.3s;
         z-index: 3;
+        color: var(--accent-color);
       }
 
       .carousel-btn:hover {
@@ -671,11 +688,12 @@
           track.style.transition = jump ? "none" : "transform 0.6s ease-in-out";
           track.style.transform = `translateX(${-offset}px)`;
 
-          // Highlight active
-          imgs.forEach((img, i) => {
-            img.classList.toggle("active", i === (currentIndex - 1 + total) % total);
+          // Highlight active card (entire card, not just image)
+          cards.forEach((c, i) => {
+            c.classList.toggle("active", i === currentIndex);
           });
         }
+
 
         nextBtn.addEventListener("click", () => {
           currentIndex++;
