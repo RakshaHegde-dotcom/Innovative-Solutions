@@ -67,58 +67,85 @@
   <main class="main">
     <!-- Hero Section -->
     <section id="hero" class="hero section">
-      <!-- Video Background -->
-      <video class="hero-video" autoplay muted loop playsinline>
-        <!-- Mobile video -->
-        <source src="assets/img/portfolio/480.webm" type="video/webm" media="(max-width: 767px)" />
-        <!-- Desktop video -->
-        <source src="assets/img/portfolio/720.webm" type="video/webm" media="(min-width: 768px)" />
-        Your browser does not support the video tag.
-      </video>
-<script>
-  const video = document.querySelector('.hero-video');
+  <!-- Video Background -->
+  <video id="hero-video" class="hero-video" autoplay muted loop playsinline>
+    <source id="video-source" src="assets/img/portfolio/720.webm" type="video/webm">
+    Your browser does not support the video tag.
+  </video>
 
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mt-5 mb-lg-0">
+        <div class="badge-wrapper mb-3">
+          <div class="d-inline-flex align-items-center rounded-pill border border-accent-light">
+            <div class="icon-circle me-2">
+              <i class="bi bi-bell"></i>
+            </div>
+            <span class="badge-text me-3">Finovra</span>
+          </div>
+        </div>
+        <h1 class="hero-title">
+          <span id="typed-text"></span>
+        </h1>
+
+        <!-- Typed.js -->
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+        <script>
+          var typed = new Typed('#typed-text', {
+            strings: ["ONE-STOP SOLUTION FOR YOUR BUSINESS NEEDS!"],
+            typeSpeed: 50,
+            backSpeed: 0,
+            showCursor: true,
+            cursorChar: '|',
+            smartBackspace: false,
+            loop: false
+          });
+        </script>
+
+        <div class="cta-wrapper">
+          <a href="#" class="btn btn-primary">Discover More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Source Switcher for Mobile / Desktop / iOS -->
+  <script>
+    const video = document.getElementById('hero-video');
+    const source = document.getElementById('video-source');
+
+    function setVideoSource() {
+      const isMobile = window.innerWidth <= 767;
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+      if (isMobile || isIOS) {
+        // Use MP4 for iOS / mobile devices
+        source.src = 'assets/img/portfolio/480.mp4';
+        source.type = 'video/mp4';
+      } else {
+        // Use WebM for desktop / other browsers
+        source.src = 'assets/img/portfolio/720.webm';
+        source.type = 'video/webm';
+      }
+
+      video.load(); // reload video with new source
+    }
+
+    // Set video on page load
+    setVideoSource();
+
+    // Optional: update video on window resize
+    window.addEventListener('resize', setVideoSource);
+  </script>
+  <script>
+  // Log the currently loaded video
   video.addEventListener('loadeddata', () => {
-    console.log("Video loaded:", video.currentSrc);
+    console.log("Loaded video:", video.currentSrc);
   });
 </script>
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row align-items-center">
-          <div class="col-lg-6 mb-4 mt-5 mb-lg-0">
-            <div class="badge-wrapper mb-3">
-              <div class="d-inline-flex align-items-center rounded-pill border border-accent-light">
-                <div class="icon-circle me-2">
-                  <i class="bi bi-bell"></i>
-                </div>
-                <span class="badge-text me-3">Finovra</span>
-              </div>
-            </div>
-            <h1 class="hero-title">
-              <span id="typed-text"></span>
-            </h1>
+</section>
 
-            <!-- Typed.js -->
-            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-            <script>
-              var typed = new Typed('#typed-text', {
-                strings: ["ONE-STOP SOLUTION FOR YOUR BUSINESS NEEDS!"],
-                typeSpeed: 50,
-                backSpeed: 0,
-                showCursor: true,
-                cursorChar: '|',
-                smartBackspace: false,
-                loop: false
-              });
-            </script>
-
-            <div class="cta-wrapper">
-              <a href="#" class="btn btn-primary">Discover More</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
 
     <!-- /Hero Section -->
