@@ -69,9 +69,19 @@
     <section id="hero" class="hero section">
       <!-- Video Background -->
       <video class="hero-video" autoplay muted loop playsinline>
-        <source src="assets/img/portfolio/home video.mp4" type="video/mp4" />
+        <!-- Mobile video -->
+        <source src="assets/img/portfolio/480.webm" type="video/webm" media="(max-width: 767px)" />
+        <!-- Desktop video -->
+        <source src="assets/img/portfolio/720.webm" type="video/webm" media="(min-width: 768px)" />
         Your browser does not support the video tag.
       </video>
+<script>
+  const video = document.querySelector('.hero-video');
+
+  video.addEventListener('loadeddata', () => {
+    console.log("Video loaded:", video.currentSrc);
+  });
+</script>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row align-items-center">
@@ -88,6 +98,7 @@
               <span id="typed-text"></span>
             </h1>
 
+            <!-- Typed.js -->
             <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
             <script>
               var typed = new Typed('#typed-text', {
@@ -105,11 +116,10 @@
               <a href="#" class="btn btn-primary">Discover More</a>
             </div>
           </div>
-
-
         </div>
       </div>
     </section>
+
 
     <!-- /Hero Section -->
 
@@ -166,53 +176,53 @@
 
     <!-- How We Work Section -->
     <!-- /How We Work Section -->
-  <!-- Clients Section -->
-<section id="clients" class="clients section">
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <div class="clients-slider overflow-hidden position-relative">
-      <div class="clients-track d-flex align-items-center">
-        <!-- Add all your logos here -->
-        <div class="client-item mx-2">
-          <img src="assets/img/about/1.png" alt="Client 1" class="img-fluid">
-        </div>
-        <div class="client-item mx-2">
-          <img src="assets/img/about/4.png" alt="Client 2" class="img-fluid">
-        </div>
-        <div class="client-item mx-2">
-          <img src="assets/img/about/2.png" alt="Client 3" class="img-fluid">
-        </div>
-        <div class="client-item mx-2">
-          <img src="assets/img/about/3.png" alt="Client 4" class="img-fluid">
-        </div>
-        <div class="client-item mx-2">
-          <img src="assets/img/about/5.png" alt="Client 5" class="img-fluid">
-        </div>
-        <div class="client-item mx-2">
-          <img src="assets/img/clients/clients-6.webp" alt="Client 6" class="img-fluid">
+    <!-- Clients Section -->
+    <section id="clients" class="clients section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="clients-slider overflow-hidden position-relative">
+          <div class="clients-track d-flex align-items-center">
+            <!-- Add all your logos here -->
+            <div class="client-item mx-2">
+              <img src="assets/img/about/1.png" alt="Client 1" class="img-fluid">
+            </div>
+            <div class="client-item mx-2">
+              <img src="assets/img/about/4.png" alt="Client 2" class="img-fluid">
+            </div>
+            <div class="client-item mx-2">
+              <img src="assets/img/about/2.png" alt="Client 3" class="img-fluid">
+            </div>
+            <div class="client-item mx-2">
+              <img src="assets/img/about/3.png" alt="Client 4" class="img-fluid">
+            </div>
+            <div class="client-item mx-2">
+              <img src="assets/img/about/5.png" alt="Client 5" class="img-fluid">
+            </div>
+            <div class="client-item mx-2">
+              <img src="assets/img/clients/clients-6.webp" alt="Client 6" class="img-fluid">
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<script>const track = document.querySelector('.clients-track');
-const trackWidth = track.scrollWidth;
-const clone = track.innerHTML;   // duplicate content
-track.innerHTML += clone;        // append clone for seamless loop
+    </section>
+    <script>const track = document.querySelector('.clients-track');
+      const trackWidth = track.scrollWidth;
+      const clone = track.innerHTML;   // duplicate content
+      track.innerHTML += clone;        // append clone for seamless loop
 
-let scrollPos = 0;
-const speed = 1;  // adjust scroll speed (higher = faster)
+      let scrollPos = 0;
+      const speed = 1;  // adjust scroll speed (higher = faster)
 
-function scrollClients() {
-  scrollPos += speed;
-  if (scrollPos >= trackWidth) {
-    scrollPos = 0; // loop back
-  }
-  track.style.transform = `translateX(-${scrollPos}px)`;
-  requestAnimationFrame(scrollClients);
-}
+      function scrollClients() {
+        scrollPos += speed;
+        if (scrollPos >= trackWidth) {
+          scrollPos = 0; // loop back
+        }
+        track.style.transform = `translateX(-${scrollPos}px)`;
+        requestAnimationFrame(scrollClients);
+      }
 
-scrollClients();
-</script>
+      scrollClients();
+    </script>
 
 
     <!-- Services Section -->
