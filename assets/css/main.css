@@ -228,7 +228,21 @@ h6 {
 /* Global Header on Scroll
   ------------------------------*/
 .scrolled .header {
-background-color: rgba(0, 0, 0, .4);}
+  background-color: rgba(0, 0, 0, .4);
+}
+
+.mobile-menu-heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 26px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: linear-gradient(90deg, #00C9FF, #92FE9D);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  background-color:
+    color-mix(in srgb, var(--accent-color), transparent 90%);
+}
 
 /*--------------------------------------------------------------
   # Navigation Menu
@@ -253,8 +267,9 @@ background-color: rgba(0, 0, 0, .4);}
 
   .navmenu a,
   .navmenu a:focus {
- color: #FFFFFF;
-  transition: all 0.3s ease;    padding: 18px 15px;
+    color: #FFFFFF;
+    transition: all 0.3s ease;
+    padding: 18px 15px;
     font-size: 15px;
     font-family: var(--nav-font);
     font-weight: 600;
@@ -353,6 +368,7 @@ background-color: rgba(0, 0, 0, .4);}
   .navmenu {
     padding: 0;
     z-index: 9997;
+
   }
 
   .navmenu ul {
@@ -360,24 +376,31 @@ background-color: rgba(0, 0, 0, .4);}
     list-style: none;
     position: absolute;
     inset: 60px 20px 20px 20px;
-    padding: 10px 0;
+    padding: 0 0 10px 0;
     margin: 0;
     border-radius: 6px;
-    background-color: var(--nav-mobile-background-color);
+
+    background: linear-gradient(#5d57f400, #5655878c), url(/assets/img/portfolio/fallback.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
     overflow-y: auto;
     transition: 0.3s;
     z-index: 9998;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
   }
 
+
   .navmenu a,
   .navmenu a:focus {
     color: var(--nav-dropdown-color);
     padding: 10px 20px;
     font-family: var(--nav-font);
-    font-size: 17px;
+    font-size: 27px;
     font-weight: 500;
     display: flex;
+
     align-items: center;
     justify-content: space-between;
     white-space: nowrap;
@@ -1369,8 +1392,8 @@ section,
   }
 
   .services .service-icon {
-    margin-right: 0;
-    margin-bottom: 1.25rem;
+    margin: 0 auto 1rem auto;
+    text-align: center;
   }
 
   .services .service-link {
@@ -3071,9 +3094,11 @@ section,
     transform: translateY(0);
   }
 }
+
 .clients-slider {
   overflow: hidden;
-  padding-top: 10px; /* space for hover zoom */
+  padding-top: 10px;
+  /* space for hover zoom */
 }
 
 .clients-track {
@@ -3091,7 +3116,8 @@ section,
   background-color: var(--surface-color);
   border-radius: 8px;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-  overflow: hidden;       /* <-- prevent image overlapping border */
+  overflow: hidden;
+  /* <-- prevent image overlapping border */
   transition: all 0.3s ease-in-out;
 }
 
@@ -3106,12 +3132,12 @@ section,
 .clients-track .client-item:hover img {
   filter: grayscale(0%);
   opacity: 1;
-  transform: scale(1.05); 
+  transform: scale(1.05);
 }
 
 .clients-track .client-item:hover {
   transform: translateY(-5px);
-    border-color: var(--accent-color);
+  border-color: var(--accent-color);
 
 }
 
@@ -3122,6 +3148,7 @@ section,
     height: 70px;
     min-width: 60px;
   }
+
   .clients-track .client-item img {
     max-height: 100%;
   }
