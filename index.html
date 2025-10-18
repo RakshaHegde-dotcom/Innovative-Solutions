@@ -76,117 +76,106 @@
 
   <main class="main">
     <!-- Hero Section -->
-<!-- ================= HERO SECTION ================= -->
-<section id="hero" class="hero section" style="position: relative; overflow: hidden;">
-  <!-- Fallback Background Image -->
-  <img
-    id="hero-poster"
-    src="assets/img/portfolio/newww.webp"
-    alt="Fallback Image"
-    class="hero-poster"
-    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;"
-  />
+    <!-- ================= HERO SECTION ================= -->
+    <section id="hero" class="hero section" style="position: relative; overflow: hidden;">
+      <!-- Fallback Background Image -->
+      <img id="hero-poster" src="assets/img/portfolio/newww.webp" alt="Fallback Image" class="hero-poster"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;" />
 
-  <!-- Video Background -->
-  <video
-    id="hero-video"
-    class="hero-video"
-    muted
-    loop
-    playsinline
-    preload="none"
-    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none; z-index: 1;">
-  </video>
+      <!-- Video Background -->
+      <video id="hero-video" class="hero-video" muted loop playsinline preload="none"
+        style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none; z-index: 1;">
+      </video>
 
-  <div class="container" data-aos="fade-up" data-aos-delay="100" style="position: relative; z-index: 2;">
-    <div class="row align-items-center">
-      <div class="col-lg-6 mb-4 mt-5 mb-lg-0">
-        <div class="badge-wrapper mb-3">
-          <div class="d-inline-flex align-items-center rounded-pill border border-accent-light">
-            <div class="icon-circle me-2">
-              <i class="bi bi-bell"></i>
+      <div class="container" data-aos="fade-up" data-aos-delay="100" style="position: relative; z-index: 2;">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mt-5 mb-lg-0">
+            <div class="badge-wrapper mb-3">
+              <div class="d-inline-flex align-items-center rounded-pill border border-accent-light">
+                <div class="icon-circle me-2">
+                  <i class="bi bi-bell"></i>
+                </div>
+                <span class="badge-text me-3">Finovra</span>
+              </div>
             </div>
-            <span class="badge-text me-3">Finovra</span>
+
+            <h1 class="hero-title">
+              <span id="typed-text"></span>
+            </h1>
+
+            <div class="cta-wrapper">
+              <a href="#" class="btn btn-primary">Discover More</a>
+            </div>
           </div>
         </div>
-
-        <h1 class="hero-title">
-          <span id="typed-text"></span>
-        </h1>
-
-        <div class="cta-wrapper">
-          <a href="#" class="btn btn-primary">Discover More</a>
-        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Lazy Load Script -->
-  <script>
-    function loadHeroVideo() {
-      const video = document.getElementById('hero-video');
-      const poster = document.getElementById('hero-poster');
-      const isMobile = window.innerWidth <= 767;
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      <!-- Lazy Load Script -->
+      <script>
+        function loadHeroVideo() {
+          const video = document.getElementById('hero-video');
+          const poster = document.getElementById('hero-poster');
+          const isMobile = window.innerWidth <= 767;
+          const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-      // On mobile/iOS: only show fallback image
-      if (isMobile || isIOS) {
-        video.style.display = 'none';
-        poster.style.display = 'block';
-        return;
+          // On mobile/iOS: only show fallback image
+          if (isMobile || isIOS) {
+            video.style.display = 'none';
+            poster.style.display = 'block';
+            return;
+          }
+
+          // On desktop: lazy load video AFTER page load
+          video.src = 'assets/img/portfolio/720.webm';
+          video.autoplay = true;
+          video.load();
+
+          // Show video when it's ready
+          video.addEventListener('canplaythrough', () => {
+            poster.style.display = 'none';
+            video.style.display = 'block';
+          });
+        }
+
+        window.addEventListener('load', loadHeroVideo);
+      </script>
+    </section>
+
+
+    <!-- ================= JS ================= -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+      // Typed.js Animation
+      new Typed('#typed-text', {
+        strings: ['ONE-STOP SOLUTION FOR YOUR BUSINESS NEEDS!'],
+        typeSpeed: 100,
+        backSpeed: 0,
+        showCursor: true,
+        cursorChar: '|',
+        loop: false
+      });
+
+      // Video Source Switcher (Desktop / Mobile / iOS)
+      function setVideoSource() {
+        const isMobile = window.innerWidth <= 767;
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const video = document.getElementById('hero-video');
+        const poster = document.getElementById('hero-poster');
+
+        if (isMobile || isIOS) {
+          video.style.display = 'none';
+          poster.src = 'assets/img/portfolio/newww.webp';
+          poster.style.display = 'block';
+        } else {
+          video.src = 'assets/img/portfolio/720.webm';
+          video.style.display = 'block';
+          poster.style.display = 'none';
+        }
       }
 
-      // On desktop: lazy load video AFTER page load
-      video.src = 'assets/img/portfolio/720.webm';
-      video.autoplay = true;
-      video.load();
-
-      // Show video when it's ready
-      video.addEventListener('canplaythrough', () => {
-        poster.style.display = 'none';
-        video.style.display = 'block';
-      });
-    }
-
-    window.addEventListener('load', loadHeroVideo);
-  </script>
-</section>
-
-
-<!-- ================= JS ================= -->
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script>
-  // Typed.js Animation
-  new Typed('#typed-text', {
-    strings: ['ONE-STOP SOLUTION FOR YOUR BUSINESS NEEDS!'],
-    typeSpeed: 100,
-    backSpeed: 0,
-    showCursor: true,
-    cursorChar: '|',
-    loop: false
-  });
-
-  // Video Source Switcher (Desktop / Mobile / iOS)
-  function setVideoSource() {
-    const isMobile = window.innerWidth <= 767;
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const video = document.getElementById('hero-video');
-    const poster = document.getElementById('hero-poster');
-
-    if (isMobile || isIOS) {
-      video.style.display = 'none';
-      poster.src = 'assets/img/portfolio/newww.webp';
-      poster.style.display = 'block';
-    } else {
-      video.src = 'assets/img/portfolio/720.webm';
-      video.style.display = 'block';
-      poster.style.display = 'none';
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', setVideoSource);
-  window.addEventListener('resize', setVideoSource);
-</script>
+      document.addEventListener('DOMContentLoaded', setVideoSource);
+      window.addEventListener('resize', setVideoSource);
+    </script>
 
 
 
@@ -252,8 +241,6 @@
 
     <!-- /About Section -->
 
-    <!-- How We Work Section -->
-    <!-- /How We Work Section -->
     <!-- Clients Section -->
     <section id="clients" class="clients section">
       <div class="container section-title" data-aos="fade-up">
@@ -280,7 +267,7 @@
             <div class="client-item mx-2">
               <img src="assets/img/about/5.webp" alt="Client 5" loading="lazy" class="img-fluid">
             </div>
-             <div class="client-item mx-2">
+            <div class="client-item mx-2">
               <img src="assets/img/about/6.webp" alt="Client 6" loading="lazy" class="img-fluid">
             </div>
 
@@ -288,24 +275,27 @@
         </div>
       </div>
     </section>
-    <script>const track = document.querySelector('.clients-track');
-      const trackWidth = track.scrollWidth;
-      const clone = track.innerHTML;  
-      track.innerHTML += clone;       
+    <script>
+      const track = document.querySelector('.clients-track');
+      const clone = track.innerHTML;
+      track.innerHTML += clone;
 
       let scrollPos = 0;
-      const speed = 2;  
+      const speed = 2;
 
       function scrollClients() {
         scrollPos += speed;
-        if (scrollPos >= trackWidth) {
-          scrollPos = 0; // loop back
+
+        if (scrollPos >= track.scrollWidth / 2) { 
+          scrollPos = 0;
         }
+
         track.style.transform = `translateX(-${scrollPos}px)`;
         requestAnimationFrame(scrollClients);
       }
 
       scrollClients();
+
     </script>
 
 
@@ -1094,7 +1084,7 @@
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
- <div id="preloader"></div>
+  <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
